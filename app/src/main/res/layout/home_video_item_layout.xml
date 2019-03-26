@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp">
+
+        <ImageView
+            android:id="@+id/im_video_thumb"
+            android:layout_width="130dp"
+            android:layout_height="73dp"
+            android:layout_marginLeft="15dp"
+            android:background="@color/cardview_shadow_start_color"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/tv_video_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="12dp"
+            android:layout_toRightOf="@id/im_video_thumb"
+            android:singleLine="true"
+            android:text="Monday"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_video_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_video_title"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@id/im_video_thumb"
+            android:text="3.9MB"
+            android:textColor="@color/cardview_shadow_start_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_video_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_video_size"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@id/im_video_thumb"
+            android:text="00:00:06"
+            android:textColor="@color/cardview_shadow_start_color"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+
+</RelativeLayout>
