@@ -1,11 +1,11 @@
 package com.bee.player.home;
 
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bee.player.MediaItem;
 import com.bee.player.R;
 import com.bee.player.base.NetImageLoader;
+import com.bee.player.util.TimeUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
@@ -24,6 +24,8 @@ public class HomeVideoAdapter extends BaseQuickAdapter<MediaItem, BaseViewHolder
         NetImageLoader.load(imageView.getContext(), item.path, imageView);
 
         helper.setText(R.id.tv_video_title, item.title);
+
+        helper.setText(R.id.tv_video_duration, TimeUtils.toDuration(item.duration));
 
     }
 }

@@ -3,7 +3,7 @@ package com.bee.player;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.bee.player.base.ShareUtils;
+import com.bee.player.util.ShareUtils;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;

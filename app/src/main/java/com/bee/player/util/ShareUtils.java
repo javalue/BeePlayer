@@ -1,4 +1,4 @@
-package com.bee.player.base;
+package com.bee.player.util;
 
 import android.content.ContentValues;
 import android.content.Context;

@@ -13,7 +13,7 @@
             android:layout_width="130dp"
             android:layout_height="73dp"
             android:layout_marginLeft="15dp"
-            android:background="@color/cardview_shadow_start_color"
+            android:background="@color/ff777777"
             android:scaleType="centerCrop" />
 
         <TextView
@@ -38,8 +38,8 @@
             android:layout_marginTop="4dp"
             android:layout_toRightOf="@id/im_video_thumb"
             android:text="3.9MB"
-            android:textColor="@color/cardview_shadow_start_color"
-            android:textSize="14sp" />
+            android:textColor="@color/ff777777"
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/tv_video_duration"
@@ -50,8 +50,8 @@
             android:layout_marginTop="4dp"
             android:layout_toRightOf="@id/im_video_thumb"
             android:text="00:00:06"
-            android:textColor="@color/cardview_shadow_start_color"
-            android:textSize="14sp" />
+            android:textColor="@color/ff777777"
+            android:textSize="12sp" />
     </RelativeLayout>
 
 
