@@ -2,12 +2,9 @@ package com.bee.player;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.bee.player.base.ShareUtils;
 import com.google.android.exoplayer2.ExoPlayerFactory;
-import com.google.android.exoplayer2.PlaybackPreparer;
-import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
@@ -24,7 +21,10 @@ public class PlayActivity extends AppCompatActivity {
     private SimpleExoPlayer player;
     private PlayerView playerView;
     private MediaItem mediaItem;
-
+    /**
+     * pause 记录当前position
+     */
+    private long mWhenPauseTime = 0L;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,10 @@ public class PlayActivity extends AppCompatActivity {
         if (mediaItem == null) {
             finish();
             return;
+        }
+        Object pauseTime = getLastCustomNonConfigurationInstance();
+        if (pauseTime != null) {
+            mWhenPauseTime = (long) pauseTime;
         }
         initializePlayer();
     }
@@ -57,9 +61,15 @@ public class PlayActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
+        mWhenPauseTime = player.getCurrentPosition();
         if (Util.SDK_INT <= 23) {
             releasePlayer();
         }
+    }
+
+    @Override
+    public Object onRetainCustomNonConfigurationInstance() {
+        return mWhenPauseTime;
     }
 
     @Override
@@ -86,6 +96,7 @@ public class PlayActivity extends AppCompatActivity {
                     .createMediaSource(ShareUtils.getUri(this, mediaItem.path));
             // Prepare the player with the source.
             player.prepare(videoSource);
+            player.seekTo(mWhenPauseTime);
             player.setPlayWhenReady(true);
         }
     }

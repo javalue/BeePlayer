@@ -6,8 +6,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="6dp"
-        android:paddingBottom="6dp">
+        android:paddingTop="10dp">
 
         <ImageView
             android:id="@+id/im_video_thumb"
