@@ -2,7 +2,9 @@ package com.bee.player;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
+import com.bee.player.util.ScreenUtils;
 import com.bee.player.util.ShareUtils;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
@@ -10,6 +12,7 @@ import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelector;
+import com.google.android.exoplayer2.ui.PlayerControlView;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
@@ -87,6 +90,7 @@ public class PlayActivity extends AppCompatActivity {
             // Bind the player to the view.
             playerView = findViewById(R.id.player_view);
             playerView.setPlayer(player);
+            playerView.setControllerVisibilityListener(mVisibilityListener);
 
             // Produces DataSource instances through which media data is loaded.
             DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(this,
@@ -100,6 +104,20 @@ public class PlayActivity extends AppCompatActivity {
             player.setPlayWhenReady(true);
         }
     }
+
+    private PlayerControlView.VisibilityListener mVisibilityListener =
+            new PlayerControlView.VisibilityListener() {
+        @Override
+        public void onVisibilityChange(int visibility) {
+            if (ScreenUtils.checkDeviceHasNavigationBar(PlayActivity.this)) {
+                if (visibility == View.GONE) {
+                    ScreenUtils.hideNavigationBar(PlayActivity.this);
+                } else if (visibility == View.VISIBLE) {
+                    ScreenUtils.showNavigationBar(PlayActivity.this);
+                }
+            }
+        }
+    };
 
     private void releasePlayer() {
         if (player != null) {
