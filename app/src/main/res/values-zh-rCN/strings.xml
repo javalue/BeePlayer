@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">飞蜂播放器</string>
+    <string name="str_allow">允许</string>
+    <string name="str_refuse">拒绝</string>
+    <string name="str_setting">设置</string>
+    <string name="str_permission_title">播放器需要一些存储权限，以方便读取你的本地视频，请允许通过。</string>
+    <string name="str_permission_storage_des_secondary">设置 -> 应用 -> 飞蜂播放器 -> 权限</string>
+
+
+</resources>
