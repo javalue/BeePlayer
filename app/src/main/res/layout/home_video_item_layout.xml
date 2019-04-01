@@ -27,7 +27,7 @@
             android:singleLine="true"
             android:text="Monday"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_video_size"

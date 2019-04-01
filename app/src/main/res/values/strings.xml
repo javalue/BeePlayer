@@ -5,6 +5,7 @@
     <string name="str_setting">Setting</string>
     <string name="str_permission_title">BeePlayer requires storage permissions to use all features, please allow.</string>
     <string name="str_permission_storage_des_secondary">Setting -> APP -> BeePlayer -> Permissions</string>
+    <string name="str_player_error">Sorry, the video has a problem</string>
 
 
 </resources>

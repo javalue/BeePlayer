@@ -30,7 +30,7 @@
         </activity>
 
         <activity
-            android:name=".PlayActivity"
+            android:name=".play.PlayActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
 
         <provider

@@ -9,23 +9,32 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.bee.player.MediaItem;
-import com.bee.player.PlayActivity;
 import com.bee.player.R;
 import com.bee.player.permission.PermissionDialogConfig;
 import com.bee.player.permission.XYPermissionConstant;
 import com.bee.player.permission.XYPermissionProxyFragment;
+import com.bee.player.play.MediaItem;
+import com.bee.player.play.PlayActivity;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import pub.devrel.easypermissions.EasyPermissions;
 
 public class HomeActivity extends AppCompatActivity {
 
+    private ProgressBar progressBar;
     private RecyclerView mRv;
 
     @Override
@@ -33,6 +42,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mRv = findViewById(R.id.rv_list);
+        progressBar = findViewById(R.id.pb_home);
         requiresPermission();
     }
 
@@ -65,17 +75,54 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void loadVideos() {
-        final ArrayList<MediaItem> mediaList = getLoadMedia();
-        HomeVideoAdapter adapter = new HomeVideoAdapter(mediaList);
-        mRv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        mRv.setAdapter(adapter);
-        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+        progressBar.setVisibility(View.VISIBLE);
+
+        Observable.create(new ObservableOnSubscribe<ArrayList<MediaItem>>() {
             @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Intent intent = new Intent(HomeActivity.this, PlayActivity.class);
-                intent.putExtra("media", mediaList.get(position));
-                startActivity(intent);
+            public void subscribe(ObservableEmitter emitter) throws Exception {
+                long start = System.currentTimeMillis();
+                ArrayList<MediaItem> mediaList = getLoadMedia();
+                long end = System.currentTimeMillis();
+                if (end - start < 1000) {
+                    Thread.sleep(500);
+                }
+                emitter.onNext(mediaList);
+                emitter.onComplete();
             }
+        }).observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<ArrayList<MediaItem>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                    }
+
+                    @Override
+                    public void onNext(final ArrayList<MediaItem> mediaItems) {
+
+                        HomeVideoAdapter adapter = new HomeVideoAdapter(mediaItems);
+                        mRv.setLayoutManager(new LinearLayoutManager(HomeActivity.this,
+                                LinearLayoutManager.VERTICAL, false));
+                        mRv.setAdapter(adapter);
+                        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(BaseQuickAdapter adapter, View view,
+                                                    int position) {
+                                Intent intent = new Intent(HomeActivity.this, PlayActivity.class);
+                                intent.putExtra("media", mediaItems.get(position));
+                                startActivity(intent);
+                            }
+                        });
+
+                        progressBar.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
         });
     }
 
