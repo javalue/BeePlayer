@@ -138,7 +138,7 @@ public class HomeActivity extends AppCompatActivity {
     public ArrayList<MediaItem> getLoadMedia() {
         ArrayList<MediaItem> mediaList = new ArrayList();
         Cursor cursor =
-                getApplicationContext().getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, null, null, null, MediaStore.Video.Media.DEFAULT_SORT_ORDER);
+                getApplicationContext().getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, null, null, null, MediaStore.Video.VideoColumns.DATE_ADDED + " DESC");
         try {
             for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
 
@@ -161,6 +161,8 @@ public class HomeActivity extends AppCompatActivity {
                         cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE)); // 大小
                 String resolution =
                         cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.RESOLUTION));
+                long addData =
+                        cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATE_ADDED));
 
                 MediaItem item = new MediaItem();
                 item.id = id;
