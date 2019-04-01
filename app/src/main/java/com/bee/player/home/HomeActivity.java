@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -36,6 +37,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private ProgressBar progressBar;
     private RecyclerView mRv;
+    private FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,13 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mRv = findViewById(R.id.rv_list);
         progressBar = findViewById(R.id.pb_home);
+        floatingActionButton = findViewById(R.id.fab_refresh);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requiresPermission();
+            }
+        });
         requiresPermission();
     }
 
