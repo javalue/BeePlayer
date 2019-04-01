@@ -161,8 +161,6 @@ public class HomeActivity extends AppCompatActivity {
                         cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE)); // 大小
                 String resolution =
                         cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.RESOLUTION));
-                long addData =
-                        cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATE_ADDED));
 
                 MediaItem item = new MediaItem();
                 item.id = id;
