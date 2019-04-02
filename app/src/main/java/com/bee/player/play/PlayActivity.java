@@ -1,11 +1,11 @@
 package com.bee.player.play;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
 import com.bee.player.R;
+import com.bee.player.base.BaseActivity;
 import com.bee.player.util.ScreenUtils;
 import com.bee.player.util.ShareUtils;
 import com.google.android.exoplayer2.ExoPlaybackException;
@@ -26,7 +26,7 @@ import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 
-public class PlayActivity extends AppCompatActivity {
+public class PlayActivity extends BaseActivity {
 
     private static final String TAG = "PlayActivity";
     private SimpleExoPlayer player;

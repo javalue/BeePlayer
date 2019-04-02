@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -14,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bee.player.R;
+import com.bee.player.base.BaseActivity;
 import com.bee.player.permission.PermissionDialogConfig;
 import com.bee.player.permission.XYPermissionConstant;
 import com.bee.player.permission.XYPermissionProxyFragment;
@@ -33,7 +33,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import pub.devrel.easypermissions.EasyPermissions;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity {
 
     private ProgressBar progressBar;
     private RecyclerView mRv;
