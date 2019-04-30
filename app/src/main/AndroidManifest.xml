@@ -30,7 +30,7 @@
         </activity>
 
         <activity
-            android:name=".PlayActivity"
+            android:name=".play.PlayActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
 
         <provider
@@ -42,6 +42,13 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
         </provider>
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5ca04a9a61f5644637001aa9" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Xiaomi" />
     </application>
 
 </manifest>

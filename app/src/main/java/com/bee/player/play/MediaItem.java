@@ -1,4 +1,4 @@
-package com.bee.player;
+package com.bee.player.play;
 
 import android.os.Parcel;
 import android.os.Parcelable;

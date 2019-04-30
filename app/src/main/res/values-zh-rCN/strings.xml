@@ -5,6 +5,6 @@
     <string name="str_setting">设置</string>
     <string name="str_permission_title">播放器需要一些存储权限，以方便读取你的本地视频，请允许通过。</string>
     <string name="str_permission_storage_des_secondary">设置 -> 应用 -> 飞蜂播放器 -> 权限</string>
-
+    <string name="str_player_error">抱歉,此视频无法播放</string>
 
 </resources>
